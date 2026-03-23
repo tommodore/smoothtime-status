@@ -19,6 +19,14 @@ export default function Home({
   const { t } = useTranslation('common')
   const state = new CompactedMonitorStateWrapper(compactedStateStr).uncompact()
 
+  // Show single monitor detail when hash is present
+  const monitorId = typeof window !== 'undefined' ? window.location.hash.substring(1) : ''
+  if (monitorId) {
+    const monitor = monitors.find((m) => m.id === monitorId)
+    if (!monitor) return <div className="text-center text-red-400">Monitor not found</div>
+    return <MonitorDetail monitor={monitor} state={state} />
+  }
+
   return (
     <>
       <Head>
@@ -26,23 +34,27 @@ export default function Home({
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <main className="min-h-screen bg-background text-white font-mono">
+      <main className="min-h-screen bg-[#09090b] text-white font-mono">
         <div className="max-w-4xl mx-auto px-6 py-16">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-6xl font-bold tracking-tighter text-accent-400 mb-2">
-              smoothtime
-            </h1>
-            <p className="text-xl text-emerald-400">Status • Live Smooth Time</p>
+          
+          {/* === SMOOTHTIME LOGO === */}
+          <div className="flex flex-col items-center mb-12">
+            <div className="flex items-baseline gap-3">
+              <span className="text-6xl font-bold tracking-[-0.04em] text-emerald-400">
+                smoothtime
+              </span>
+              <span className="text-xs font-mono tracking-widest text-zinc-500 mt-4">STATUS</span>
+            </div>
+            <p className="text-emerald-400 text-xl mt-1">Live Smooth Time Monitoring</p>
           </div>
 
           {/* Overall Status */}
-          <div className="card p-8 mb-10">
+          <div className="bg-[#18181b] border border-zinc-800 rounded-3xl p-8 mb-10">
             <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
           </div>
 
           {/* Monitor List */}
-          <div className="card p-8">
+          <div className="bg-[#18181b] border border-zinc-800 rounded-3xl p-8">
             <MonitorList monitors={monitors} state={state} />
           </div>
 
