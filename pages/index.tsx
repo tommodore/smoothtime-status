@@ -1,19 +1,13 @@
 import Head from 'next/head'
-
-import { Inter } from 'next/font/google'
 import { MonitorTarget } from '@/types/config'
 import { maintenances, pageConfig } from '@/uptime.config'
 import OverallStatus from '@/components/OverallStatus'
-import Header from '@/components/Header'
 import MonitorList from '@/components/MonitorList'
-import { Center, Text } from '@mantine/core'
-import MonitorDetail from '@/components/MonitorDetail'
 import Footer from '@/components/Footer'
 import { useTranslation } from 'react-i18next'
 import { CompactedMonitorStateWrapper, getFromStore } from '@/worker/src/store'
 
 export const runtime = 'experimental-edge'
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({
   compactedStateStr,
@@ -21,48 +15,39 @@ export default function Home({
 }: {
   compactedStateStr: string
   monitors: MonitorTarget[]
-  tooltip?: string
-  statusPageLink?: string
 }) {
   const { t } = useTranslation('common')
-  let state = new CompactedMonitorStateWrapper(compactedStateStr).uncompact()
-
-  // Specify monitorId in URL hash to view a specific monitor (can be used in iframe)
-  const monitorId = window.location.hash.substring(1)
-  if (monitorId) {
-    const monitor = monitors.find((monitor) => monitor.id === monitorId)
-    if (!monitor || !state) {
-      return <Text fw={700}>{t('Monitor not found', { id: monitorId })}</Text>
-    }
-    return (
-      <div style={{ maxWidth: '810px' }}>
-        <MonitorDetail monitor={monitor} state={state} />
-      </div>
-    )
-  }
+  const state = new CompactedMonitorStateWrapper(compactedStateStr).uncompact()
 
   return (
     <>
       <Head>
-        <title>{pageConfig.title}</title>
-        <link rel="icon" href={pageConfig.favicon ?? '/favicon.png'} />
+        <title>smoothtime Status</title>
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <main className={inter.className}>
-        <Header />
+      <main className="min-h-screen bg-background text-white font-mono">
+        <div className="max-w-4xl mx-auto px-6 py-16">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-6xl font-bold tracking-tighter text-accent-400 mb-2">
+              smoothtime
+            </h1>
+            <p className="text-xl text-emerald-400">Status • Live Smooth Time</p>
+          </div>
 
-        {state.lastUpdate === 0 ? (
-          <Center>
-            <Text fw={700}>{t('Monitor State not defined')}</Text>
-          </Center>
-        ) : (
-          <div>
+          {/* Overall Status */}
+          <div className="card p-8 mb-10">
             <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
+          </div>
+
+          {/* Monitor List */}
+          <div className="card p-8">
             <MonitorList monitors={monitors} state={state} />
           </div>
-        )}
 
-        <Footer />
+          <Footer />
+        </div>
       </main>
     </>
   )
@@ -70,22 +55,15 @@ export default function Home({
 
 export async function getServerSideProps() {
   const { workerConfig } = await import('@/uptime.config')
-  // Read state as string from storage, to avoid hitting server-side cpu time limit
   const compactedStateStr = await getFromStore(process.env as any, 'state')
 
-  // Only present these values to client
-  const monitors = workerConfig.monitors.map((monitor) => {
-    return {
-      id: monitor.id,
-      name: monitor.name,
-      // @ts-ignore
-      tooltip: monitor?.tooltip,
-      // @ts-ignore
-      statusPageLink: monitor?.statusPageLink,
-      // @ts-ignore
-      hideLatencyChart: monitor?.hideLatencyChart,
-    }
-  })
+  const monitors = workerConfig.monitors.map((monitor) => ({
+    id: monitor.id,
+    name: monitor.name,
+    tooltip: monitor?.tooltip,
+    statusPageLink: monitor?.statusPageLink,
+    hideLatencyChart: monitor?.hideLatencyChart,
+  }))
 
   return { props: { compactedStateStr, monitors } }
 }
