@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #09090b;
+  color: #f4f4f5;
+}
+
+.status-page {
+  background-color: #09090b;
+}
+
+.card {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+}
+
+.status-up {
+  color: #34d399 !important;
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.status-down {
+  color: #ef4444 !important;
+}
+
+.status-maintenance {
+  color: #eab308 !important;
+}
