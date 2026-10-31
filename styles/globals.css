@@ -32,3 +32,4 @@ body { background: var(--st-bg); color: var(--st-fg); font-family: Inter, system
 .st-footer a { color: var(--st-mute); text-decoration: none; margin-left: 16px; }
 .st-footer span > a:first-child { margin-left: 0; }
 .st-footer a:hover { color: var(--st-fg); }
+@media (max-width: 430px) { .st-chip { display: none; } .st-nav a[href='/incidents'] { display: none; } .st-header-inner { height: 52px; } }
