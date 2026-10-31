@@ -36,7 +36,7 @@ export default function Home({
     <>
       <Head>
         <title>smoothtime Status</title>
-        <meta name="theme-color" content="#0a0a0b" />
+        <meta name="theme-color" content="#2E3440" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
 

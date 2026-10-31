@@ -7,18 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "#09090b",     // zinc-950
-        card: "#18181b",           // zinc-900
-        accent: {
-          400: "#34d399",          // emerald-400
-          500: "#10b981",          // emerald-500
-          600: "#059669",          // emerald-600
-        },
-        text: {
-          primary: "#f4f4f5",      // zinc-100
-          secondary: "#a1a1aa",    // zinc-400
-        }
+      colors: { // Nord design system (styles/tokens.css)
+        background: 'var(--color-bg)', card: 'var(--color-surface)',
+        accent: { 400: 'var(--color-accent-hover)', 500: 'var(--color-accent)', 600: 'var(--color-accent-strong)' },
+        text: { primary: 'var(--color-text-strong)', secondary: 'var(--color-text-muted)' },
       },
       fontFamily: {
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],

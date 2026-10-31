@@ -1,31 +1,33 @@
 @font-face { font-family: Inter; font-weight: 400 700; font-display: swap; src: url(/fonts/inter-var-latin.woff2) format('woff2'); }
 @font-face { font-family: 'JetBrains Mono'; font-weight: 400 700; font-display: swap; src: url(/fonts/jetbrains-mono-var-latin.woff2) format('woff2'); }
 :root, :root[data-mantine-color-scheme='dark'] {
-  --st-bg: #0a0a0b; --st-panel: #111113; --st-line: #232327; --st-line2: #2e2e33;
-  --st-fg: #ededef; --st-mute: #8b8b93; --st-acc: #2dd4bf;
-  --st-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --mantine-color-body: #0a0a0b; --mantine-color-text: #ededef;
-  --mantine-color-dark-6: #111113; --mantine-color-dark-7: #0a0a0b; --mantine-color-dark-4: #232327; --mantine-color-dark-5: #1a1a1d;
-  --mantine-color-default-border: #232327; --mantine-color-dimmed: #8b8b93;
+  /* aliases onto the Nord design system (styles/tokens.css) */
+  --st-bg: var(--color-bg); --st-panel: var(--color-surface); --st-line: var(--color-border-strong); --st-line2: var(--color-border-strong);
+  --st-fg: var(--color-text-strong); --st-mute: var(--color-text-muted); --st-acc: var(--color-accent);
+  --st-mono: var(--font-mono);
+  --mantine-color-body: var(--color-bg); --mantine-color-text: var(--color-text);
+  --mantine-color-dark-6: var(--color-surface); --mantine-color-dark-7: var(--color-bg); --mantine-color-dark-4: var(--color-border-strong); --mantine-color-dark-5: var(--color-surface-raised);
+  --mantine-color-default-border: var(--color-border-strong); --mantine-color-dimmed: var(--color-text-muted);
 }
-body { background: var(--st-bg); color: var(--st-fg); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; margin: 0; }
+body { background: var(--st-bg); color: var(--st-fg); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; margin: 0; }
 .st-wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
-.st-header { position: sticky; top: 0; z-index: 10; background: rgba(10,10,11,.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--st-line); }
+.st-header { position: sticky; top: 0; z-index: 10; background: var(--color-header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--st-line); }
 .st-header-inner { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 12px; }
+.st-logo img { display: block; }
 .st-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: -.01em; color: var(--st-fg); text-decoration: none; white-space: nowrap; }
-.st-chip { font: 500 .68rem/1 var(--st-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--st-acc); border: 1px solid rgba(45,212,191,.35); border-radius: 99px; padding: 4px 8px; }
+.st-chip { font: 500 .68rem/1 var(--st-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--st-acc); border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent); border-radius: var(--radius-pill); background: var(--color-accent-subtle); padding: 4px 8px; }
 .st-nav { display: flex; gap: 18px; align-items: center; font-size: .9rem; white-space: nowrap; }
 .st-nav a { color: var(--st-mute); text-decoration: none; }
 .st-nav a:hover { color: var(--st-fg); }
 .st-nav .st-nav-hl { color: var(--st-fg); border: 1px solid var(--st-line2); border-radius: 99px; padding: 4px 12px; }
 @media (max-width: 520px) { .st-nav { gap: 12px; font-size: .82rem; } .st-nav a:not(.st-nav-hl):not([href='/incidents']) { display: none; } }
 .st-main { padding: 36px 0 48px; }
-.st-card, .st-list.mantine-Card-root { background: var(--st-panel) !important; border: 1px solid var(--st-line) !important; border-radius: 10px !important; box-shadow: none !important; }
+.st-card, .st-list.mantine-Card-root { background: var(--st-panel) !important; border: 1px solid var(--st-line) !important; border-radius: var(--radius-md) !important; box-shadow: var(--shadow-1) !important; }
 .st-overall { padding: 28px 20px; }
 .st-overall h1 { font-size: clamp(1.5rem, 4vw, 2rem); }
 .st-list .mantine-Accordion-item { background: transparent; border: 1px solid var(--st-line); border-radius: 8px; margin-bottom: 12px; }
 .st-list .mantine-Accordion-control { background: transparent; font-weight: 600; }
-.st-list .mantine-Accordion-control:hover { background: rgba(255,255,255,.02); }
+.st-list .mantine-Accordion-control:hover { background: var(--color-surface-raised); }
 .st-list .mantine-Accordion-panel { border-top: 1px solid var(--st-line); }
 .st-list .mantine-Text-root[style*='inline'] { font-family: var(--st-mono); font-size: .85rem; }
 .st-footer { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; border-top: 1px solid var(--st-line); margin-top: 36px; padding-top: 20px; font-size: .85rem; color: var(--st-mute); }
@@ -42,3 +44,21 @@ body { background: var(--st-bg); color: var(--st-fg); font-family: Inter, system
 .st-usage-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
 .st-usage-table td { padding: 7px 0; border-top: 1px solid var(--st-line); }
 .st-usage-table td:last-child { text-align: right; font-family: var(--st-mono); color: var(--st-fg); }
+
+/* Nord design system: LCARS rail + log labels (matches smoothtime.io) */
+.st-lcars { display: flex; align-items: center; gap: 4px; height: 6px; max-width: 920px; margin: 0 auto; padding: 0 20px; transform: translateY(3px); }
+.st-lcars > span { height: 6px; border-radius: var(--radius-pill); transform-origin: left center; }
+.st-lcars .elbow { width: 40px; height: 14px; border: 6px solid var(--lcars-elbow); border-right: 0; border-bottom: 0; border-radius: 14px 0 0 0; align-self: flex-start; transform: translateY(-1px); }
+.st-lcars .s1 { width: 56px; background: var(--lcars-1); } .st-lcars .s2 { width: 22px; background: var(--lcars-2); }
+.st-lcars .s3 { width: 90px; background: var(--lcars-3); } .st-lcars .rail { flex: 1; height: 1px; background: var(--lcars-rail); } .st-lcars .s4 { width: 34px; background: var(--lcars-4); }
+@media (prefers-reduced-motion: no-preference) {
+  .st-lcars > span { animation: st-seg var(--dur-slow) var(--ease-emphasized) both; }
+  .st-lcars .s1 { animation-delay: .12s; } .st-lcars .s2 { animation-delay: .2s; } .st-lcars .s3 { animation: st-seg var(--dur-slow) .28s var(--ease-emphasized) both, st-pulse 6s 2s ease-in-out infinite; } .st-lcars .rail { animation-delay: .34s; } .st-lcars .s4 { animation-delay: .6s; }
+  @keyframes st-seg { from { transform: scaleX(0); opacity: 0; } }
+  @keyframes st-pulse { 50% { opacity: .35; } }
+}
+@media (max-width: 520px) { .st-lcars .s3 { width: 48px; } .st-lcars .s1 { width: 34px; } }
+.st-usage h2::before { content: "[LOG] "; color: var(--color-accent); font: 500 .75rem var(--font-mono); letter-spacing: var(--tracking-caps); }
+.st-usage h2 { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--color-text-muted); }
+.st-body { background-image: radial-gradient(var(--color-dot) 1px, transparent 1px); background-size: 22px 22px; }
+body { background-image: radial-gradient(var(--color-dot) 1px, transparent 1px); background-size: 22px 22px; }

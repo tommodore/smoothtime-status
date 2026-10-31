@@ -31,11 +31,11 @@ export default function MonitorDetail({
   let statusIcon =
     state.incident[monitor.id].slice(-1)[0].end === null ? (
       <IconAlertCircle
-        style={{ width: '1.25em', height: '1.25em', color: '#b91c1c', marginRight: '3px' }}
+        style={{ width: '1.25em', height: '1.25em', color: 'var(--color-danger)', marginRight: '3px' }}
       />
     ) : (
       <IconCircleCheck
-        style={{ width: '1.25em', height: '1.25em', color: '#2dd4bf', marginRight: '3px' }}
+        style={{ width: '1.25em', height: '1.25em', color: 'var(--color-success)', marginRight: '3px' }}
       />
     )
 
@@ -50,7 +50,7 @@ export default function MonitorDetail({
         style={{
           width: '1.25em',
           height: '1.25em',
-          color: '#fab005',
+          color: 'var(--color-warning)',
           marginRight: '3px',
         }}
       />

@@ -22,11 +22,11 @@ function countDownCount(state: MonitorState, ids: string[]) {
 function getStatusTextColor(state: MonitorState, ids: string[]) {
   let downCount = countDownCount(state, ids)
   if (downCount === 0) {
-    return '#2dd4bf'
+    return 'var(--color-success)'
   } else if (downCount === ids.length) {
-    return '#df484a'
+    return 'var(--color-danger-text)'
   } else {
-    return '#f29030'
+    return 'var(--color-warning)'
   }
 }
 

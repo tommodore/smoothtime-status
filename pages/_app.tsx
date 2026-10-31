@@ -1,14 +1,18 @@
 import '@mantine/core/styles.css'
+import '@/styles/tokens.css'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { MantineProvider, createTheme } from '@mantine/core'
 
 const theme = createTheme({
-  primaryColor: 'teal',
-  fontFamily: 'Inter, system-ui, sans-serif',
-  fontFamilyMonospace: '"JetBrains Mono", ui-monospace, monospace',
-  headings: { fontFamily: 'Inter, system-ui, sans-serif' },
+  primaryColor: 'nord',
+  primaryShade: 4,
+  colors: { nord: nordFrost },
+  fontFamily: 'var(--font-sans)',
+  fontFamilyMonospace: 'var(--font-mono)',
+  headings: { fontFamily: 'var(--font-sans)' },
 })
+import { nordFrost } from '@/util/nord'
 import NoSsr from '@/components/NoSsr'
 import '@/util/i18n'
 

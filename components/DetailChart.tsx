@@ -1,4 +1,5 @@
 import { Line } from 'react-chartjs-2'
+import { token } from '@/util/nord'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -44,7 +45,7 @@ export default function DetailChart({
     datasets: [
       {
         data: latencyData,
-        borderColor: 'rgb(112, 119, 140)',
+        borderColor: token('--color-accent'),
         borderWidth: 2,
         radius: 0,
         cubicInterpolationMode: 'monotone' as const,

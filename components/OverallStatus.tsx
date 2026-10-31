@@ -30,14 +30,14 @@ export default function OverallStatus({
   let groupedMonitor = (group && Object.keys(group).length > 0) || false
 
   let statusString = ''
-  let icon = <IconAlertCircle style={{ width: 48, height: 48, color: '#f87171' }} />
+  let icon = <IconAlertCircle style={{ width: 48, height: 48, color: 'var(--color-danger-text)' }} />
   if (state.overallUp === 0 && state.overallDown === 0) {
     statusString = t('No data yet')
   } else if (state.overallUp === 0) {
     statusString = t('All systems not operational')
   } else if (state.overallDown === 0) {
     statusString = t('All systems operational')
-    icon = <IconCircleCheck style={{ width: 48, height: 48, color: '#2dd4bf' }} />
+    icon = <IconCircleCheck style={{ width: 48, height: 48, color: 'var(--color-success)' }} />
   } else {
     statusString = t('Some systems not operational', {
       down: state.overallDown,
@@ -91,7 +91,7 @@ export default function OverallStatus({
       <Title mt="sm" style={{ textAlign: 'center', letterSpacing: '-0.03em', fontWeight: 650 }} order={1}>
         {statusString}
       </Title>
-      <Title mt="sm" style={{ textAlign: 'center', color: '#8b8b93', fontWeight: 400, fontFamily: 'var(--st-mono)' }} order={5}>
+      <Title mt="sm" style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontWeight: 400, fontFamily: 'var(--st-mono)' }} order={5}>
         {t('Last updated on', {
           date: new Date(state.lastUpdate * 1000).toLocaleString(),
           seconds: currentTime - state.lastUpdate,
@@ -101,7 +101,7 @@ export default function OverallStatus({
       {/* Upcoming Maintenance */}
       {upcomingMaintenances.length > 0 && (
         <>
-          <Title mt="4px" style={{ textAlign: 'center', color: '#8b8b93', fontWeight: 400, fontFamily: 'var(--st-mono)' }} order={5}>
+          <Title mt="4px" style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontWeight: 400, fontFamily: 'var(--st-mono)' }} order={5}>
             {t('upcoming maintenance', { count: upcomingMaintenances.length })}{' '}
             <span
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
