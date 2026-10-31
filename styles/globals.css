@@ -33,3 +33,12 @@ body { background: var(--st-bg); color: var(--st-fg); font-family: Inter, system
 .st-footer span > a:first-child { margin-left: 0; }
 .st-footer a:hover { color: var(--st-fg); }
 @media (max-width: 430px) { .st-chip { display: none; } .st-nav a[href='/incidents'] { display: none; } .st-header-inner { height: 52px; } }
+.st-usage { padding: 22px 20px; margin: 20px 0; }
+.st-usage h2 { font-size: 1rem; font-weight: 600; margin: 0 0 14px; }
+.st-usage-note { color: var(--st-mute); font-size: .9rem; margin: 0; }
+.st-usage-kpis { display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 14px; }
+.st-usage-kpis > div { display: flex; flex-direction: column; gap: 4px; font-size: .82rem; color: var(--st-mute); }
+.st-usage-num { font: 600 1.6rem/1 var(--st-mono); color: var(--st-acc); }
+.st-usage-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.st-usage-table td { padding: 7px 0; border-top: 1px solid var(--st-line); }
+.st-usage-table td:last-child { text-align: right; font-family: var(--st-mono); color: var(--st-fg); }

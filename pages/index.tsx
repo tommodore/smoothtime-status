@@ -6,6 +6,7 @@ import MonitorList from '@/components/MonitorList'
 import MonitorDetail from '@/components/MonitorDetail'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import UsageCard, { UsageStats } from '@/components/UsageCard'
 import { useTranslation } from 'react-i18next'
 import { CompactedMonitorStateWrapper, getFromStore } from '@/worker/src/store'
 
@@ -14,9 +15,11 @@ export const runtime = 'experimental-edge'
 export default function Home({
   compactedStateStr,
   monitors,
+  usage,
 }: {
   compactedStateStr: string
   monitors: MonitorTarget[]
+  usage: UsageStats | null
 }) {
   const { t } = useTranslation('common')
   const state = new CompactedMonitorStateWrapper(compactedStateStr).uncompact()
@@ -44,6 +47,7 @@ export default function Home({
             <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
           </section>
           <MonitorList monitors={monitors} state={state} />
+          <UsageCard stats={usage} />
           <Footer />
         </div>
       </main>
@@ -63,5 +67,15 @@ export async function getServerSideProps() {
     hideLatencyChart: monitor?.hideLatencyChart,
   }))
 
-  return { props: { compactedStateStr, monitors } }
+  // All regions run in one container, so any region's health port serves the same /stats.
+  let usage: UsageStats | null = null
+  try {
+    const res = await fetch('http://eu-west.smoothtime.io:8080/stats', { signal: AbortSignal.timeout(3000) })
+    if (res.ok) {
+      const j: any = await res.json()
+      if (j && typeof j.unique_clients_today === 'number') usage = j as UsageStats
+    }
+  } catch {}
+
+  return { props: { compactedStateStr, monitors, usage } }
 }
