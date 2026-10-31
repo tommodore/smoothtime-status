@@ -1,9 +1,9 @@
 function getColor(percent: number | string, darker: boolean): string {
   percent = Number(percent)
   if (percent >= 99.9) {
-    return darker ? '#059669' : '#3bd671'
+    return '#2dd4bf'
   } else if (percent >= 99) {
-    return darker ? '#3bd671' : '#9deab8'
+    return darker ? '#5eead4' : '#99f6e4'
   } else if (percent >= 95) {
     return '#f29030'
   } else if (Number.isNaN(percent)) {

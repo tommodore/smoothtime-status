@@ -4,8 +4,15 @@ const pageConfig: PageConfig = {
   title: "Smoothtime Network Status",
   links: [
     { link: 'https://github.com/tommodore/smoothtime', label: 'GitHub' },
-    { link: 'https://smoothtime.io', label: 'Website', highlight: true },
+    { link: 'https://smoothtime.io', label: 'smoothtime.io', highlight: true },
   ],
+  group: {
+    'Europe': ['eu_west', 'eu_central', 'eu_east'],
+    'United States': ['us_east', 'us_central', 'us_mountain', 'us_pacific'],
+    'Southern Hemisphere': ['au_sydney', 'new_zealand', 'chile', 'argentina'],
+  },
+  customFooter:
+    '<div class="st-footer"><span>© 2026 smoothtime · Status powered by <a href="https://github.com/lyc8503/UptimeFlare" target="_blank" rel="noopener">UptimeFlare</a></span><span><a href="https://smoothtime.io">smoothtime.io</a><a href="https://github.com/tommodore/smoothtime" target="_blank" rel="noopener">GitHub</a><a href="https://smoothtime.io/legal">Legal &amp; Privacy</a></span></div>',
 }
 
 const workerConfig: WorkerConfig = {

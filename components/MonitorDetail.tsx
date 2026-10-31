@@ -35,7 +35,7 @@ export default function MonitorDetail({
       />
     ) : (
       <IconCircleCheck
-        style={{ width: '1.25em', height: '1.25em', color: '#059669', marginRight: '3px' }}
+        style={{ width: '1.25em', height: '1.25em', color: '#2dd4bf', marginRight: '3px' }}
       />
     )
 

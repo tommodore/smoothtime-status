@@ -22,7 +22,7 @@ function countDownCount(state: MonitorState, ids: string[]) {
 function getStatusTextColor(state: MonitorState, ids: string[]) {
   let downCount = countDownCount(state, ids)
   if (downCount === 0) {
-    return '#059669'
+    return '#2dd4bf'
   } else if (downCount === ids.length) {
     return '#df484a'
   } else {
@@ -115,19 +115,8 @@ export default function MonitorList({
   }
 
   return (
-    <Center>
-      <Card
-        shadow="sm"
-        padding="lg"
-        radius="md"
-        ml="md"
-        mr="md"
-        mt="xl"
-        withBorder={!groupedMonitor}
-        style={{ width: groupedMonitor ? '897px' : '865px' }}
-      >
-        {content}
-      </Card>
-    </Center>
+    <Card padding="lg" radius="md" mt="lg" withBorder={!groupedMonitor} className="st-list" style={{ width: '100%' }}>
+      {content}
+    </Card>
   )
 }
