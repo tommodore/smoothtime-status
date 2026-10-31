@@ -59,6 +59,34 @@ const workerConfig: WorkerConfig = {
       target: 'http://us-pacific.smoothtime.io:8080/health',
       tooltip: 'Nuremberg Node - US Pacific Region',
     },
+    {
+      id: 'au_sydney',
+      name: 'Australia Sydney',
+      method: 'GET',
+      target: 'http://australia-sydney.smoothtime.io:8080/health',
+      tooltip: 'Nuremberg Node - Australia Sydney Region',
+    },
+    {
+      id: 'new_zealand',
+      name: 'New Zealand',
+      method: 'GET',
+      target: 'http://new-zealand.smoothtime.io:8080/health',
+      tooltip: 'Nuremberg Node - New Zealand Region',
+    },
+    {
+      id: 'chile',
+      name: 'Chile',
+      method: 'GET',
+      target: 'http://chile.smoothtime.io:8080/health',
+      tooltip: 'Nuremberg Node - Chile Region',
+    },
+    {
+      id: 'argentina',
+      name: 'Argentina',
+      method: 'GET',
+      target: 'http://argentina.smoothtime.io:8080/health',
+      tooltip: 'Nuremberg Node - Argentina Region',
+    },
   ],
 }
 
