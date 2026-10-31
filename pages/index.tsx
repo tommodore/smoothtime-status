@@ -5,6 +5,7 @@ import OverallStatus from '@/components/OverallStatus'
 import MonitorList from '@/components/MonitorList'
 import MonitorDetail from '@/components/MonitorDetail'
 import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import { useTranslation } from 'react-i18next'
 import { CompactedMonitorStateWrapper, getFromStore } from '@/worker/src/store'
 
@@ -24,7 +25,7 @@ export default function Home({
   const monitorId = typeof window !== 'undefined' ? window.location.hash.substring(1) : ''
   if (monitorId) {
     const monitor = monitors.find((m) => m.id === monitorId)
-    if (!monitor) return <div className="text-center text-red-400">Monitor not found</div>
+    if (!monitor) return <div className="st-wrap" style={{ padding: 40, textAlign: 'center' }}>Monitor not found</div>
     return <MonitorDetail monitor={monitor} state={state} />
   }
 
@@ -32,33 +33,17 @@ export default function Home({
     <>
       <Head>
         <title>smoothtime Status</title>
-        <link rel="icon" href="/favicon.png" />
+        <meta name="theme-color" content="#0a0a0b" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
 
-      <main className="min-h-screen bg-[#09090b] text-white font-mono">
-        <div className="max-w-4xl mx-auto px-6 py-16">
-          
-          {/* === SMOOTHTIME LOGO === */}
-          <div className="flex flex-col items-center mb-12">
-            <div className="flex items-baseline gap-3">
-              <span className="text-6xl font-bold tracking-[-0.04em] text-emerald-400">
-                smoothtime
-              </span>
-              <span className="text-xs font-mono tracking-widest text-zinc-500 mt-4">STATUS</span>
-            </div>
-            <p className="text-emerald-400 text-xl mt-1">Live Smooth Time Monitoring</p>
-          </div>
-
-          {/* Overall Status */}
-          <div className="bg-[#18181b] border border-zinc-800 rounded-3xl p-8 mb-10">
+      <Header />
+      <main className="st-main">
+        <div className="st-wrap">
+          <section className="st-card st-overall">
             <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
-          </div>
-
-          {/* Monitor List */}
-          <div className="bg-[#18181b] border border-zinc-800 rounded-3xl p-8">
-            <MonitorList monitors={monitors} state={state} />
-          </div>
-
+          </section>
+          <MonitorList monitors={monitors} state={state} />
           <Footer />
         </div>
       </main>

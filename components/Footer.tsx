@@ -1,4 +1,3 @@
-import { Divider } from '@mantine/core'
 import { pageConfig } from '@/uptime.config'
 
 export default function Footer() {
@@ -7,7 +6,6 @@ export default function Footer() {
 
   return (
     <>
-      <Divider mt="lg" />
       <div dangerouslySetInnerHTML={{ __html: pageConfig.customFooter ?? defaultFooter }} />
     </>
   )
